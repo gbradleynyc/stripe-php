@@ -49,9 +49,6 @@ class Subscription extends ApiResource
 
     use ApiOperations\All;
     use ApiOperations\Create;
-    use ApiOperations\Delete {
-        delete as protected _delete;
-    }
     use ApiOperations\Retrieve;
     use ApiOperations\Update;
 
@@ -67,6 +64,10 @@ class Subscription extends ApiResource
     const STATUS_UNPAID             = 'unpaid';
     const STATUS_INCOMPLETE         = 'incomplete';
     const STATUS_INCOMPLETE_EXPIRED = 'incomplete_expired';
+
+    use ApiOperations\Delete {
+        delete as protected _delete;
+    }
 
     public static function getSavedNestedResources()
     {
@@ -85,7 +86,7 @@ class Subscription extends ApiResource
      *
      * @throws \Stripe\Exception\ApiErrorException if the request fails
      *
-     * @return Subscription The deleted subscription.
+     * @return \Stripe\Subscription The deleted subscription.
      */
     public function cancel($params = null, $opts = null)
     {
@@ -98,7 +99,7 @@ class Subscription extends ApiResource
      *
      * @throws \Stripe\Exception\ApiErrorException if the request fails
      *
-     * @return Subscription The updated subscription.
+     * @return \Stripe\Subscription The updated subscription.
      */
     public function deleteDiscount($params = null, $opts = null)
     {
