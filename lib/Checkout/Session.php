@@ -35,6 +35,7 @@ class Session extends \Stripe\ApiResource
 
     /**
      * Possible string representations of submit type.
+     *
      * @link https://stripe.com/docs/api/checkout/sessions/create#create_checkout_session-submit_type
      */
     const SUBMIT_TYPE_AUTO    = 'auto';

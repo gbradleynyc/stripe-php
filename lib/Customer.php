@@ -44,6 +44,7 @@ class Customer extends ApiResource
 
     /**
      * Possible string representations of the customer's type of tax exemption.
+     *
      * @link https://stripe.com/docs/api/customers/object#customer_object-tax_exempt
      */
     const TAX_EXEMPT_NONE    = 'none';

@@ -43,6 +43,7 @@ class Account extends ApiResource
 
     /**
      * Possible string representations of an account's business type.
+     *
      * @link https://stripe.com/docs/api/accounts/object#account_object-business_type
      */
     const BUSINESS_TYPE_COMPANY    = 'company';
@@ -50,6 +51,7 @@ class Account extends ApiResource
 
     /**
      * Possible string representations of an account's capabilities.
+     *
      * @link https://stripe.com/docs/api/accounts/object#account_object-capabilities
      */
     const CAPABILITY_CARD_PAYMENTS     = 'card_payments';
@@ -59,6 +61,7 @@ class Account extends ApiResource
 
     /**
      * Possible string representations of an account's capability status.
+     *
      * @link https://stripe.com/docs/api/accounts/object#account_object-capabilities
      */
     const CAPABILITY_STATUS_ACTIVE   = 'active';
@@ -67,6 +70,7 @@ class Account extends ApiResource
 
     /**
      * Possible string representations of an account's type.
+     *
      * @link https://stripe.com/docs/api/accounts/object#account_object-type
      */
     const TYPE_CUSTOM   = 'custom';

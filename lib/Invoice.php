@@ -81,6 +81,7 @@ class Invoice extends ApiResource
 
     /**
      * Possible string representations of the billing reason.
+     *
      * @link https://stripe.com/docs/api/invoices/object#invoice_object-billing_reason
      */
     const BILLING_REASON_MANUAL                 = 'manual';
@@ -93,6 +94,7 @@ class Invoice extends ApiResource
 
     /**
      * Possible string representations of the `collection_method` property.
+     *
      * @link https://stripe.com/docs/api/invoices/object#invoice_object-collection_method
      */
     const COLLECTION_METHOD_CHARGE_AUTOMATICALLY = 'charge_automatically';
@@ -100,6 +102,7 @@ class Invoice extends ApiResource
 
     /**
      * Possible string representations of the invoice status.
+     *
      * @link https://stripe.com/docs/api/invoices/object#invoice_object-status
      */
     const STATUS_DRAFT         = 'draft';
@@ -110,6 +113,7 @@ class Invoice extends ApiResource
 
     /**
      * Possible string representations of the `billing` property.
+     *
      * @deprecated Use `collection_method` instead.
      * @link https://stripe.com/docs/api/invoices/object#invoice_object-billing
      */

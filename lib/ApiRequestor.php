@@ -46,9 +46,11 @@ class ApiRequestor
 
     /**
      * Creates a telemetry json blob for use in 'X-Stripe-Client-Telemetry' headers
+     *
      * @static
      *
      * @param RequestTelemetry $requestTelemetry
+     *
      * @return string
      */
     private static function _telemetryJson($requestTelemetry)
@@ -295,6 +297,7 @@ class ApiRequestor
      *
      * @throws Exception\AuthenticationException
      * @throws Exception\ApiConnectionException
+     *
      * @return array
      */
     private function _requestRaw($method, $url, $params, $headers)

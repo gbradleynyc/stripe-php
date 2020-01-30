@@ -26,6 +26,7 @@ class Token extends ApiResource
 
     /**
      * Possible string representations of the token type.
+     *
      * @link https://stripe.com/docs/api/tokens/object#token_object-type
      */
     const TYPE_ACCOUNT      = 'account';

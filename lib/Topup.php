@@ -35,6 +35,7 @@ class Topup extends ApiResource
 
     /**
      * Possible string representations of the status of the top-up.
+     *
      * @link https://stripe.com/docs/api/topups/object#topup_object-status
      */
     const STATUS_CANCELED  = 'canceled';

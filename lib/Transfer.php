@@ -39,6 +39,7 @@ class Transfer extends ApiResource
 
     /**
      * Possible string representations of the source type of the transfer.
+     *
      * @link https://stripe.com/docs/api/transfers/object#transfer_object-source_type
      */
     const SOURCE_TYPE_ALIPAY_ACCOUNT = 'alipay_account';

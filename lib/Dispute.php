@@ -34,6 +34,7 @@ class Dispute extends ApiResource
 
     /**
      * Possible string representations of dispute reasons.
+     *
      * @link https://stripe.com/docs/api#dispute_object
      */
     const REASON_BANK_CANNOT_PROCESS       = 'bank_cannot_process';
@@ -53,6 +54,7 @@ class Dispute extends ApiResource
 
     /**
      * Possible string representations of dispute statuses.
+     *
      * @link https://stripe.com/docs/api#dispute_object
      */
     const STATUS_CHARGE_REFUNDED        = 'charge_refunded';

@@ -44,6 +44,7 @@ class CreditNote extends ApiResource
 
     /**
      * Possible string representations of the credit note reason.
+     *
      * @link https://stripe.com/docs/api/credit_notes/object#credit_note_object-reason
      */
     const REASON_DUPLICATE              = 'duplicate';
@@ -53,6 +54,7 @@ class CreditNote extends ApiResource
 
     /**
      * Possible string representations of the credit note status.
+     *
      * @link https://stripe.com/docs/api/credit_notes/object#credit_note_object-status
      */
     const STATUS_ISSUED = 'issued';
@@ -60,6 +62,7 @@ class CreditNote extends ApiResource
 
     /**
      * Possible string representations of the credit note type.
+     *
      * @link https://stripe.com/docs/api/credit_notes/object#credit_note_object-status
      */
     const TYPE_POST_PAYMENT = 'post_payment';

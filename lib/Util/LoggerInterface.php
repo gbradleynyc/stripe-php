@@ -30,6 +30,7 @@ interface LoggerInterface
      *
      * @param string $message
      * @param array $context
+     *
      * @return void
      */
     public function error($message, array $context = []);

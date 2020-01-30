@@ -89,6 +89,7 @@ abstract class ApiResource extends StripeObject
 
     /**
      * @param string|null $id
+     *
      * @return string The instance endpoint URL for the given class.
      */
     public static function resourceUrl($id)
