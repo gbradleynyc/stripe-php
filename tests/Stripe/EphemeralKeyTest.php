@@ -15,14 +15,15 @@ class EphemeralKeyTest extends TestCase
         $resource = EphemeralKey::create([
             "customer" => "cus_123",
         ], ["stripe_version" => "2017-05-25"]);
-        $this->assertInstanceOf(\Stripe\EphemeralKey::class, $resource);
+        static::assertInstanceOf(\Stripe\EphemeralKey::class, $resource);
     }
 
     /**
-     * @expectedException \InvalidArgumentException
      */
     public function testIsNotCreatableWithoutAnExplicitApiVersion()
     {
+        $this->expectException(\InvalidArgumentException::class);
+
         $resource = EphemeralKey::create([
             "customer" => "cus_123",
         ]);
@@ -38,6 +39,6 @@ class EphemeralKeyTest extends TestCase
             '/v1/ephemeral_keys/' . $key->id
         );
         $resource = $key->delete();
-        $this->assertInstanceOf(\Stripe\EphemeralKey::class, $resource);
+        static::assertInstanceOf(\Stripe\EphemeralKey::class, $resource);
     }
 }

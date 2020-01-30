@@ -12,7 +12,7 @@ class DefaultLoggerTest extends \Stripe\TestCase
         $logger->error("message");
 
         global $lastMessage;
-        $this->assertSame($lastMessage, "message");
+        static::assertSame($lastMessage, "message");
     }
 }
 

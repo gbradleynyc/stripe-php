@@ -20,11 +20,12 @@ class CollectionTest extends TestCase
     }
 
     /**
-     * @expectedException \Stripe\Exception\InvalidArgumentException
-     * @expectedExceptionMessageRegExp /You tried to access the \d index/
      */
     public function testOffsetGetNumericIndex()
     {
+        $this->expectException(\Stripe\Exception\InvalidArgumentException::class);
+        $this->expectExceptionMessageRegExp('/You tried to access the \\d index/');
+
         $this->fixture[0];
     }
 
@@ -45,7 +46,7 @@ class CollectionTest extends TestCase
         );
 
         $resources = $this->fixture->all();
-        $this->assertTrue(is_array($resources->data));
+        static::assertInternalType('array', $resources->data);
     }
 
     public function testCanRetrieve()
@@ -97,7 +98,7 @@ class CollectionTest extends TestCase
             array_push($seen, $item['id']);
         }
 
-        $this->assertSame([1, 2, 3], $seen);
+        static::assertSame([1, 2, 3], $seen);
     }
 
     public function testCanIterateBackwards()
@@ -113,7 +114,7 @@ class CollectionTest extends TestCase
             array_push($seen, $item['id']);
         }
 
-        $this->assertSame([3, 2, 1], $seen);
+        static::assertSame([3, 2, 1], $seen);
     }
 
     public function testSupportsIteratorToArray()
@@ -123,7 +124,7 @@ class CollectionTest extends TestCase
             array_push($seen, $item['id']);
         }
 
-        $this->assertSame([1], $seen);
+        static::assertSame([1], $seen);
     }
 
     public function testProvidesAutoPagingIterator()
@@ -148,7 +149,7 @@ class CollectionTest extends TestCase
             array_push($seen, $item['id']);
         }
 
-        $this->assertSame([1, 2, 3], $seen);
+        static::assertSame([1, 2, 3], $seen);
     }
 
     public function testAutoPagingIteratorSupportsIteratorToArray()
@@ -173,7 +174,7 @@ class CollectionTest extends TestCase
             array_push($seen, $item['id']);
         }
 
-        $this->assertSame([1, 2, 3], $seen);
+        static::assertSame([1, 2, 3], $seen);
     }
 
     public function testProvidesAutoPagingIteratorThatSupportsBackwardsPagination()
@@ -205,7 +206,7 @@ class CollectionTest extends TestCase
             array_push($seen, $item['id']);
         }
 
-        $this->assertSame([3, 2, 1], $seen);
+        static::assertSame([3, 2, 1], $seen);
     }
 
     public function testHeaders()
@@ -237,16 +238,16 @@ class CollectionTest extends TestCase
     public function testEmptyCollection()
     {
         $emptyCollection = Collection::emptyCollection();
-        $this->assertEquals([], $emptyCollection->data);
+        static::assertSame([], $emptyCollection->data);
     }
 
     public function testIsEmpty()
     {
         $empty = Collection::constructFrom(['data' => []]);
-        $this->assertTrue($empty->isEmpty());
+        static::assertTrue($empty->isEmpty());
 
         $notEmpty = Collection::constructFrom(['data' => [['id' => 1]]]);
-        $this->assertFalse($notEmpty->isEmpty());
+        static::assertFalse($notEmpty->isEmpty());
     }
 
     public function testNextPage()
@@ -271,7 +272,7 @@ class CollectionTest extends TestCase
         foreach ($nextPage->data as $element) {
             array_push($ids, $element['id']);
         }
-        $this->assertEquals([2, 3], $ids);
+        static::assertSame([2, 3], $ids);
     }
 
     public function testPreviousPage()
@@ -292,6 +293,6 @@ class CollectionTest extends TestCase
         );
 
         $previousPage = $this->fixture->previousPage();
-        $this->assertEquals([], $previousPage->data);
+        static::assertSame([], $previousPage->data);
     }
 }

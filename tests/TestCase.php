@@ -5,7 +5,7 @@ namespace Stripe;
 /**
  * Base class for Stripe test cases.
  */
-class TestCase extends \PHPUnit_Framework_TestCase
+class TestCase extends \PHPUnit\Framework\TestCase
 {
     /** @var string original API base URL */
     protected $origApiBase;
@@ -82,13 +82,13 @@ class TestCase extends \PHPUnit_Framework_TestCase
         $base = null
     ) {
         $this->prepareRequestMock($method, $path, $params, $headers, $hasFile, $base)
-            ->will($this->returnCallback(
+            ->willReturnCallback(
                 function ($method, $absUrl, $headers, $params, $hasFile) {
                     $curlClient = HttpClient\CurlClient::instance();
                     ApiRequestor::setHttpClient($curlClient);
                     return $curlClient->request($method, $absUrl, $headers, $params, $hasFile);
                 }
-            ));
+            );
     }
 
     /**
@@ -158,14 +158,14 @@ class TestCase extends \PHPUnit_Framework_TestCase
         $absUrl = $base . $path;
 
         return $this->clientMock
-            ->expects($this->once())
+            ->expects(static::once())
             ->method('request')
             ->with(
-                $this->identicalTo(strtolower($method)),
-                $this->identicalTo($absUrl),
+                static::identicalTo(strtolower($method)),
+                static::identicalTo($absUrl),
                 // for headers, we only check that all of the headers provided in $headers are
                 // present in the list of headers of the actual request
-                $headers === null ? $this->anything() : $this->callback(function ($array) use ($headers) {
+                $headers === null ? static::anything() : static::callback(function ($array) use ($headers) {
                     foreach ($headers as $header) {
                         if (!in_array($header, $array)) {
                             return false;
@@ -173,8 +173,8 @@ class TestCase extends \PHPUnit_Framework_TestCase
                     }
                     return true;
                 }),
-                $params === null ? $this->anything() : $this->identicalTo($params),
-                $this->identicalTo($hasFile)
+                $params === null ? static::anything() : static::identicalTo($params),
+                static::identicalTo($hasFile)
             );
     }
 }

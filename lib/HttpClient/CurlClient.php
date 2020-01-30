@@ -440,7 +440,7 @@ class CurlClient implements ClientInterface
      * @param int $numRetries
      * @param array|\Stripe\Util\CaseInsensitiveArray $rheaders
      *
-     * @return int
+     * @return float
      */
     private function sleepTime($numRetries, $rheaders)
     {
@@ -465,7 +465,7 @@ class CurlClient implements ClientInterface
             $sleepSeconds = max($sleepSeconds, $retryAfter);
         }
 
-        return $sleepSeconds;
+        return (float) $sleepSeconds;
     }
 
     /**

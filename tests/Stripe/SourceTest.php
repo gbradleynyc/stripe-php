@@ -13,7 +13,7 @@ class SourceTest extends TestCase
             '/v1/sources/' . self::TEST_RESOURCE_ID
         );
         $resource = Source::retrieve(self::TEST_RESOURCE_ID);
-        $this->assertInstanceOf(\Stripe\Source::class, $resource);
+        static::assertInstanceOf(\Stripe\Source::class, $resource);
     }
 
     public function testIsCreatable()
@@ -25,7 +25,7 @@ class SourceTest extends TestCase
         $resource = Source::create([
             "type" => "card"
         ]);
-        $this->assertInstanceOf(\Stripe\Source::class, $resource);
+        static::assertInstanceOf(\Stripe\Source::class, $resource);
     }
 
     public function testIsSaveable()
@@ -37,7 +37,7 @@ class SourceTest extends TestCase
             '/v1/sources/' . $resource->id
         );
         $resource->save();
-        $this->assertInstanceOf(\Stripe\Source::class, $resource);
+        static::assertInstanceOf(\Stripe\Source::class, $resource);
     }
 
     public function testIsUpdatable()
@@ -49,7 +49,7 @@ class SourceTest extends TestCase
         $resource = Source::update(self::TEST_RESOURCE_ID, [
             "metadata" => ["key" => "value"],
         ]);
-        $this->assertInstanceOf(\Stripe\Source::class, $resource);
+        static::assertInstanceOf(\Stripe\Source::class, $resource);
     }
 
     public function testCanSaveCardExpiryDate()
@@ -84,8 +84,8 @@ class SourceTest extends TestCase
         $source->card->exp_year = 2022;
         $source->save();
 
-        $this->assertSame(12, $source->card->exp_month);
-        $this->assertSame(2022, $source->card->exp_year);
+        static::assertSame(12, $source->card->exp_month);
+        static::assertSame(2022, $source->card->exp_year);
     }
 
     public function testIsDetachableWhenAttached()
@@ -97,14 +97,15 @@ class SourceTest extends TestCase
             '/v1/customers/cus_123/sources/' . $resource->id
         );
         $resource->detach();
-        $this->assertInstanceOf(\Stripe\Source::class, $resource);
+        static::assertInstanceOf(\Stripe\Source::class, $resource);
     }
 
     /**
-     * @expectedException \Stripe\Exception\UnexpectedValueException
      */
     public function testIsNotDetachableWhenUnattached()
     {
+        $this->expectException(\Stripe\Exception\UnexpectedValueException::class);
+
         $resource = Source::retrieve(self::TEST_RESOURCE_ID);
         $resource->detach();
     }
@@ -117,8 +118,8 @@ class SourceTest extends TestCase
             '/v1/sources/' . $source->id . "/source_transactions"
         );
         $resources = $source->sourceTransactions();
-        $this->assertTrue(is_array($resources->data));
-        $this->assertInstanceOf(\Stripe\SourceTransaction::class, $resources->data[0]);
+        static::assertInternalType('array', $resources->data);
+        static::assertInstanceOf(\Stripe\SourceTransaction::class, $resources->data[0]);
     }
 
     public function testCanListSourceTransactions()
@@ -128,8 +129,8 @@ class SourceTest extends TestCase
             '/v1/sources/' . self::TEST_RESOURCE_ID . "/source_transactions"
         );
         $resources = Source::allSourceTransactions(self::TEST_RESOURCE_ID);
-        $this->assertTrue(is_array($resources->data));
-        $this->assertInstanceOf(\Stripe\SourceTransaction::class, $resources->data[0]);
+        static::assertInternalType('array', $resources->data);
+        static::assertInstanceOf(\Stripe\SourceTransaction::class, $resources->data[0]);
     }
 
     public function testCanVerify()
@@ -140,6 +141,6 @@ class SourceTest extends TestCase
             '/v1/sources/' . $resource->id . "/verify"
         );
         $resource->verify(["values" => [32, 45]]);
-        $this->assertInstanceOf(\Stripe\Source::class, $resource);
+        static::assertInstanceOf(\Stripe\Source::class, $resource);
     }
 }

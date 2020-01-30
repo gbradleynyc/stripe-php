@@ -10,17 +10,18 @@ class CapabilityTest extends TestCase
     public function testHasCorrectUrl()
     {
         $resource = \Stripe\Account::retrieveCapability(self::TEST_ACCOUNT_ID, self::TEST_RESOURCE_ID);
-        $this->assertSame(
+        static::assertSame(
             "/v1/accounts/" . self::TEST_ACCOUNT_ID . "/capabilities/" . self::TEST_RESOURCE_ID,
             $resource->instanceUrl()
         );
     }
 
     /**
-     * @expectedException \Stripe\Exception\BadMethodCallException
      */
     public function testIsNotDirectlyRetrievable()
     {
+        $this->expectException(\Stripe\Exception\BadMethodCallException::class);
+
         Capability::retrieve(self::TEST_RESOURCE_ID);
     }
 
@@ -33,14 +34,15 @@ class CapabilityTest extends TestCase
             '/v1/accounts/' . self::TEST_ACCOUNT_ID . '/capabilities/' . self::TEST_RESOURCE_ID
         );
         $resource->save();
-        $this->assertInstanceOf(\Stripe\Capability::class, $resource);
+        static::assertInstanceOf(\Stripe\Capability::class, $resource);
     }
 
     /**
-     * @expectedException \Stripe\Exception\BadMethodCallException
      */
     public function testIsNotDirectlyUpdatable()
     {
+        $this->expectException(\Stripe\Exception\BadMethodCallException::class);
+
         Capability::update(self::TEST_RESOURCE_ID, ["requested" => true]);
     }
 }
